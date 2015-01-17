@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>读日志</title>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/Scripts/jquery-1.8.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/Scripts/NatureAjax/jQuery.command.js"></script>
+    <script language="javascript" type="text/javascript">
+        function reader() {
+            var path = $("#Text1").val()+".txt";
+
+            $.ajax({
+                type: "GET",
+                dataType: "text",
+                cache: false,
+                url: "/log/" + path,
+                error: function () {
+                    alert("没有这个文件！");
+                },
+
+                success: function (msg) {
+                    //alert(msg);
+                    var log = eval("(" + msg + "})");
+                    //alert(log["k-1_20130329_10:02:56_1009"]);
+
+                    var hh = "";
+                    for (var key in log) {
+                        //alert(key);
+                        if (key != "head") {
+                            var a = log[key];
+                            hh += "</br>" ;
+                            hh += "</br>";
+                            hh += "访问标识：" + key + "</br>";
+                            hh += "访问时间：" + a.time + "</br>";
+                            hh += "网站标识：" + a.appID + "</br>";
+                            hh += "ssoUserID：" + a.userIDsso + "</br>";
+                            hh += "appUserID：" + a.userIDapp + "</br>";
+                            hh += "访问者IP：" + a.ip + "</br>";
+                            hh += "访问网页：" + a.url + "</br>";
+                            hh += "访问状态：" + a.state + "</br>";
+                            hh += "访问记录：" + a.msg + "</br>";
+                        }
+                    }
+
+                    $("#divMsg").html(hh);
+
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    
+    <p>
+        使用方法：在下面的文本框里写要查看的文件名。不包括扩展名。</p>
+    <p>
+        文件名格式：yyyyMMdd_HH </p>
+    <p>
+        一小时一份文件。</p>
+    <p>
+        <input id="Text1" type="text" /><input id="Button1" type="button" value="读取" onclick="reader()" /></p>
+    <div id="divMsg"></div>
+
+</body>
+</html>

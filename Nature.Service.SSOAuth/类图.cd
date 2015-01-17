@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Comment CommentText="SSO的登录票据">
+    <Position X="3.907" Y="9" Height="0.708" Width="1.7" />
+  </Comment>
+  <Comment CommentText="SSO和app沟通的票据">
+    <Position X="3.5" Y="11.605" Height="0.708" Width="1.7" />
+  </Comment>
+  <Comment CommentText="认证流程">
+    <Position X="9.354" Y="6.76" Height="0.594" Width="1.648" />
+  </Comment>
+  <Comment CommentText="登录和退出">
+    <Position X="9.343" Y="5.219" Height="0.594" Width="1.648" />
+  </Comment>
+  <Comment CommentText="能否继续访问">
+    <Position X="9.302" Y="4.375" Height="0.594" Width="1.648" />
+  </Comment>
+  <Comment CommentText="同步登录、退出">
+    <Position X="9.364" Y="6.021" Height="0.594" Width="1.648" />
+  </Comment>
+  <Class Name="Nature.Service.SSOAuth.ManageSSOToAppKey">
+    <Position X="11.5" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\ManageSSOToAppKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.UserSsoToAppKey">
+    <Position X="0.75" Y="11.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQCAAAAAAAQAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\ManageSSOToAppKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.ManageUserLoginInfo">
+    <Position X="11.5" Y="8.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAABAAAAAAAEAAAAABCAAABAAAEAAAAAAAABQAAA=</HashCode>
+      <FileName>SSOAuth\ManageUserLoginInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.UserLoginInfo">
+    <Position X="0.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAACAAAAAAgAAANAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\ManageUserLoginInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.ManageUserSsoOnlineInfo">
+    <Position X="11.5" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAABQAAAABAAAAAAAIEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\ManageUserSsoOnlineInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.UserSsoOnlineInfo">
+    <Position X="0.75" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAgAAAAAAQIAAAAAQAAAAAAAIAAAQAABAAAAAA=</HashCode>
+      <FileName>SSOAuth\ManageUserSsoOnlineInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.SsoAuth">
+    <Position X="6" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQgAAAAYgAAiAASACAAAQAAAAAAA=</HashCode>
+      <FileName>SSOAuth\SsoAuth.ashx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.SsoManage">
+    <Position X="6" Y="8.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAABAAAgAAAEAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\SsoManage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.ValidateImage">
+    <Position X="0.75" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAABAAAAACAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>SSOAuth\ValidateImage.ashx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nature.Service.SSOAuth.SSOUserInfoMore">
+    <Position X="15" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>SSOAuth\SSOUserInfoMore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="宋体" Size="9" />
+</ClassDiagram>

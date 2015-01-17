@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>登录sso的页面</title>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/Scripts/jquery-1.8.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/Scripts/NatureAjax/jQuery.command.js"></script>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/Scripts/NatureAjax/jQuery.cookie.js"></script>
+    <script language="javascript" type="text/javascript" src="http://NatureService.517.cn/SSOApp/mangoSSO.js"></script>
+    
+    <script type="text/javascript">
+        var isShowLoginDiv = false;
+        window.onload = function () {
+
+            if (window.location.search.length > 0) {
+                Natrue.SSO.writeDebug("提交表单后返回：" + location.search);
+                Natrue.SSO.getSSOinfo(function () {
+                    //有参数，提交表单后返回
+                    //isShowLoginDiv = true;
+                    //判断参数
+                    var urlSearch = $.getParameter();
+                    $("#txtUserCode").val(urlSearch.userCode);
+                    switch (urlSearch.statusCode) {
+                        case "1":
+                            //登录sso成功
+                            Natrue.SSO.writeDebug("提交表单后，登录sso成功");
+                            Natrue.SSO.ssoLogin(showLoginDiv, function (state) {
+                                if (state == "0") {
+                                    //登录其他网站
+                                    Natrue.SSO.LoginOtherApp();
+
+                                    //alert("登录成功");
+                                    if (typeof (parent.start) != "undefined") {
+                                        setTimeout(parent.start, 40);
+                                    }
+                                    
+                                    $("#divLogoutSSO").show();
+                                } else {
+                                    //出现异常：账号暂停，或者账号被锁定不能访问，或者app和sso沟通出现异常
+                                    Natrue.SSO.writeDebug("app和sso沟通出现异常");
+                                    alert(state);
+                                }
+                            });
+                            break;
+                        case "2":
+                            //用户名密码不匹配
+                            Natrue.SSO.writeDebug("用户名密码不匹配");
+                            showLoginDiv();
+                            alert("登录账户和登录密码不一致，请检查后再次输入。（登录密码是区分大小写）");
+                            break;
+                        case "3":
+                            //验证码不对
+                            Natrue.SSO.writeDebug("验证码不对");
+                            showLoginDiv();
+                            alert("验证码不正确，请重新填写。（不区分大小写）");
+                            break;
+                    }
+                });
+
+            } else {
+                //第一次访问，没有提交过表单
+                Natrue.SSO.loginStart(showLoginDiv, function (state) {
+                    if (state == "0") {
+                        //登录成功！
+                        if (isShowLoginDiv)
+                            alert("登录成功");
+
+                        $("#divLogoutSSO").show();
+
+                    } else {
+                        //出现异常：账号暂停，或者账号被锁定不能访问，或者app和sso沟通出现异常
+                        alert(state);
+                    }
+                });
+
+            }
+        };
+        //显示登录的表单，修改提交的url和webappID
+        function showLoginDiv() {
+            isShowLoginDiv = true;
+            $("#divLoginSSO").show();
+            //修改表单的提交网址
+            $("form").attr("action", Natrue.SSO.ssoURL + "/SSOAuth/SSOAuth.ashx?action=Login&url=http://" + location.host + location.pathname);
+            $("#hdnWebappID").val(Natrue.SSO.appID);
+            $("#yzm").attr("src", Natrue.SSO.ssoURL + "/SSOAuth/ValidateImage.ashx");
+        }
+        
+        //退出登录
+        function logout() {
+            Natrue.SSO.logoutSSO();
+        }
+        
+        function reloadyzm(yzm) {
+            yzm.src = Natrue.SSO.ssoURL + "/SSOAuth/ValidateImage.ashx";
+        }
+    </script>
+
+</head>
+    <body>
+        
+        <div id="divLogoutSSO" style="display:none;">
+            <input id="btnLogout" type="button" value="退出登录" onclick="logout()" />
+        </div>
+    
+        <div id="divLoginSSO" style="display:none;">
+            <form name="form1" action="http://{0}/SSOAuth/SSOAuth.ashx?action=Login" method="POST">
+                <div >登录名称：<input id="txtUserCode" name="userCode" type="text" /></div>
+                <div >登录密码：<input id="txtUserPsw"  name="userPsw" type="password" /></div>
+                <div >验证码：<input id="txtyzm"  name="yzm" type="text" /> <img id="yzm" src="" width="80px" onclick="reloadyzm(this)"/></div>
+                 <div id="div_logo">选择项目：<iframe src="/SupportingPlatform/ProjectList.aspx"  allowtransparency="true" style="height: 25px;" scrolling="no" frameborder="0"  ></iframe> </div>
+                <div ><input id="Submit1" type="submit" value=" 登 录 " /></div>
+                <div ><input id="hdnWebappID"  name="webappID" type="hidden" value="a" /></div>
+            </form>
+        </div>
+
+        <div id="divMsg"></div>
+
+    </body>
+</html>
